@@ -13,3 +13,8 @@ target_link_libraries(server PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grp
 add_executable(client src/client.cpp ${PROTO_SRCS} ${PROTO_HDRS} ${GRPC_SRCS} ${GRPC_HDRS})
 find_package(gRPC CONFIG REQUIRED)
 target_link_libraries(client PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts gRPC::grpc++_reflection)
+
+add_executable(video_convert src/convert.cpp)
+find_package(FFMPEG REQUIRED)
+target_include_directories(video_convert PRIVATE ${FFMPEG_INCLUDE_DIRS})
+target_link_libraries(video_convert PRIVATE ${FFMPEG_LIBRARIES})
